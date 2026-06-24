@@ -209,6 +209,7 @@ Doxygen ist ein Tool zur automatischen Generierung von Dokumentation aus dem Que
 
 - https://www.doxygen.nl/index.html
 - lokal installieren oder nur in der CI/CD verwenden
+- `sudo apt-get install -y doxygen graphviz` (Linux)
 
 `Doxyfile` generieren `doxygen -g Doxyfile` und anpassen. Für unser Projekt bereits vorhanden. Die wichtigsten Einstellungen sind:
 
@@ -218,6 +219,22 @@ GENERATE_RTF = YES
 ```
 
 Man kann auch HTML oder LaTeX (pdf) (etc.) generieren lassen.
+
+Dann kann mit `doxygen` die Dokumentation generiert werden. Die generierte Dokumentation kann in der CI/CD Pipeline als Artefakt gespeichert werden, sodass sie immer verfügbar ist.
+Bei RTF wird die Documentation nach `docs/rtf/refman.rtf` generiert. (mit den aktuellen Settings)
+
+In GitHub Actions kann dann nach der Generierung der Dokumentation ein Artefakt erstellt werden, das heruntergeladen werden kann. Dies ermöglicht es dem Team, jederzeit auf die aktuelle Dokumentation zuzugreifen. Das findet sich auf der Aktionsseite unter "Artifacts" des jeweiligen Workflows.
+
+```yaml
+
+  - name: Upload RTF artifact
+    uses: actions/upload-artifact@v7
+    with:
+      name: doxygen-rtf-documentation
+      path: docs/rtf/refman.rtf
+```
+
+- https://github.com/actions/upload-artifact
 
 ### 4 PR und Issue Templates
 

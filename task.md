@@ -48,12 +48,32 @@ Für einen Term mit n unterschiedlichen Variablen prüfen, dass exakt 2^n Zeilen
 
 ## 3. Maria möchte die Codequalität im Projekt verbessern.
 
-Die Studenten sollen einen Linter 
+Die Studenten sollen einen statischen Code-Analyzer in das Projekt einbinden und die Codequalität verbessern. Siehe Section 2 in der `README.md` für weitere Details.
 
+## 4. Jürgen möchte eine Dokumentation immer verfügbar haben
 
-- Linter !!!
-- Doxygen
+Die Studenten sollen eine Dokumentation mit Doxygen erstellen und diese als Artefakt in der CI Pipeline generieren. Siehe Section 3 in der `README.md` für weitere Details.
 
-## 5. Bonusaufgaben
+## 5. Bonusaufgabe: Maria möchte, ein Issue und ein PR-Template für das Projekt haben
 
+Issue-Template erstellen
+====================
 
+Erstelle ein Issue-Template für dein Projekt, das folgende Punkte abdeckt:
+
+- Titel
+- Beschreibung
+- Akzeptanzkriterien
+- Labels
+- Priorität
+
+Erstelle ein PR-Template, das folgende Punkte enthält:
+
+- Titel
+- Beschreibung
+- Verknüpfte Issues
+- Änderungen
+- Tests
+- Checkliste
+
+Teste die Templates, indem du ein neues Issue und einen neuen Pull Request erstellst.
