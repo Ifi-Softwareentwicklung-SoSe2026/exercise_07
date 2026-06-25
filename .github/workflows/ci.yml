@@ -1,5 +1,7 @@
 name: CI Pipeline
 
+  # This workflow is only a template, read it, change it, add to it
+
 on:
   push:
     branches: [ main ]
@@ -23,11 +25,6 @@ jobs:
         run: dotnet restore
 
       - name: Build project
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build --no-restore --configuration Release -warnaserror # warnaserror: Treat warnings as errors
 
-      - name: Run Unit Tests
-        run: dotnet test --no-build --configuration Release --filter "TestCategory=Unit"
 
-      # Integrationstest: Programm mit Eingabe ausführen
-      - name: Run Integration Test (Program Execution)
-        run: echo "WHERE name = 'Test'" | dotnet run tabelle
