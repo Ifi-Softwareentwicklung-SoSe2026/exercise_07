@@ -22,7 +22,7 @@ tags: [Sommersemester2026, Softwareentwicklung, Übung07]
 Softwareentwicklung SoSe2026
 ============================
 
-## 1. Continous Integration (CI) Workflow
+## 1. Continuous Integration (CI) Workflow
 
 - Softwaretests sind ein wichtiger Bestandteil der Softwareentwicklung, um sicherzustellen, dass die implementierte Funktionalität korrekt arbeitet und keine Regressionen auftreten.
 - Unit-Tests prüfen einzelne Komponenten oder Funktionen isoliert, während Integrationstests das Zusammenspiel mehrerer Komponenten testen.
@@ -44,7 +44,7 @@ Anlegen des UnitTest-Projekts (im `csharp` Ordner):
 ======
 
 ```bash
-dotnet new xunit -n TruthTableTests
+dotnet new xunit -n TruthTableTests -o tests/TruthTableTests
 ```
 
 Solution File anlegen (im `csharp` Ordner):
@@ -177,11 +177,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '10.0.x'
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -193,12 +193,12 @@ jobs:
 ### 2 Linter
 
 Ein Linter ist ein Werkzeug, das den Quellcode auf Stil- und Formatierungsfehler überprüft. Er hilft dabei, den Code konsistent und lesbar zu halten. In C# können wir `dotnet format` verwenden, um unseren Code automatisch zu formatieren.
-`dotnet format --verfiy-no-changes` prüft, ob der Code den Formatierungsrichtlinien entspricht, ohne Änderungen vorzunehmen. Wenn der Code nicht formatiert ist, gibt der Befehl einen Fehler zurück.
+`dotnet format --verify-no-changes` prüft, ob der Code den Formatierungsrichtlinien entspricht, ohne Änderungen vorzunehmen. Wenn der Code nicht formatiert ist, gibt der Befehl einen Fehler zurück.
 
 Wir können auch den Meziantou Analyzer verwenden, um den Code auf Best Practices und potenzielle Probleme zu überprüfen. Dieser Analyzer kann in Visual Studio oder über die Kommandozeile integriert werden.
 
 ```bash
-    dotnet package add Meziantou.Analyzer
+    dotnet add package Meziantou.Analyzer
 ```
 
 Dabei läuft der Analyzer während des Build-Prozesses und gibt Warnungen oder Fehler aus, wenn bestimmte Regeln verletzt werden. Dies hilft, die Codequalität zu verbessern und potenzielle Probleme frühzeitig zu erkennen.
@@ -228,7 +228,7 @@ In GitHub Actions kann dann nach der Generierung der Dokumentation ein Artefakt 
 ```yaml
 
   - name: Upload RTF artifact
-    uses: actions/upload-artifact@v7
+    uses: actions/upload-artifact@v5
     with:
       name: doxygen-rtf-documentation
       path: docs/rtf/refman.rtf
@@ -312,5 +312,4 @@ Beschreibe, wie du deine Änderungen getestet hast.
 - [ ] Dokumentation wurde aktualisiert.
 ```
 
-PR Templats müssen im Ordner `.github/PULL_REQUEST_TEMPLATE/` gespeichert werden, damit GitHub sie automatisch erkennt und beim Erstellen eines neuen Pull Requests anbietet. Auch hier werden nur Dateien mit der Endung `.md` unterstützt.
-
+PR Templates müssen im Ordner `.github/PULL_REQUEST_TEMPLATE/` gespeichert werden, damit GitHub sie automatisch erkennt und beim Erstellen eines neuen Pull Requests anbietet. Auch hier werden nur Dateien mit der Endung `.md` unterstützt.
