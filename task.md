@@ -1,23 +1,27 @@
 # Exercise07 Agent-Workflow
 
-Diese Datei dient der Middleware als strukturierte Grundlage fuer die automatisch erzeugten Issues von Maria und Juergen. Die fachliche User Story und die Akzeptanzkriterien stehen in `README.md`.
+Diese Datei dient der Middleware als strukturierte Grundlage fuer die automatisch erzeugten Issues von Maria. Die fachlichen Hinweise und Beispiele stehen in `README.md`.
 
-## 1. Initiale Aufgabe von Maria an die Studierenden
+# Part 1 -- CI Workflow vorbereiten
 
-- Der LiaScript Link im `README.md` muss auf dem Repository der Studenten geändert werden.
-- Ein Badge für den Status der Tests muss in die `README.md` eingebunden werden. (Hilfen in der `README.md`)
+<!-- agent-assignment-part:{"kind":"ci","required_checks":["workflow:.github/workflows/ci.yml"]} -->
+
+- Der LiaScript-Link im `README.md` muss auf das Repository der Studierenden geändert werden.
+- Ein Badge für den Status der Tests muss in die `README.md` eingebunden werden. Hilfen stehen in der `README.md`.
 - Das Testprojekt soll unter `csharp/tests/TruthTableTests` angelegt werden.
-- Eine Solution muss angelegt werden und sowohl mit dem Produktionsprojekt als auch mit dem Testprojekt verknüpft werden.
-- Das Testprojekt muss mit dem Produktionsprojekt verknüpft werden.
-- Schreibe die CI Aktion in `.github/workflows/ci.yml` so, dass sie die Tests beim push auf jeden branch ausführt.
+- Eine Solution muss im Ordner `csharp/` angelegt werden und sowohl das Produktionsprojekt als auch das Testprojekt enthalten.
+- Das Testprojekt muss das Produktionsprojekt referenzieren.
+- Die CI-Aktion in `.github/workflows/ci.yml` soll so angepasst werden, dass sie die Tests bei jedem Push auf jeden Branch ausführt.
+- Die CI muss über den Workflow-Pfad `.github/workflows/ci.yml` erfolgreich laufen. Der Jobname darf geändert werden.
 
-## 2. Tests Aufgabe von Maria an die Studierenden
+# Part 2 -- Automatische Tests ergänzen
 
-Schreibe folgende Tests:
+<!-- agent-assignment-part:{"kind":"ci","required_checks":["workflow:.github/workflows/ci.yml"]} -->
+
+Schreibe folgende Tests und stelle sicher, dass sie lokal und in `.github/workflows/ci.yml` ausgeführt werden:
 
 1. Integrationstest Wahrheitstabelle End-to-End
-Eingabe eines Terms wie A AND (B OR NOT C) über den normalen Ablauf (Input -> Parse -> Matrix -> Writer). Bonus: Prüfung, dass Anzahl Zeilen, Spaltenreihenfolge und Ergebnisse konsistent sind.
-Diesen Test als Commandline Integrationstest implementieren, der den gesamten Ablauf prüft.
+Eingabe eines Terms wie A AND (B OR NOT C) über den normalen Ablauf (Input -> Parse -> Matrix -> Writer). Bonus: Prüfung, dass Anzahl Zeilen, Spaltenreihenfolge und Ergebnisse konsistent sind. Diesen Test als Commandline-Integrationstest implementieren, der den gesamten Ablauf prüft.
 
 2. Unit-Test AND korrekt
 Mehrere Belegungen für A AND B prüfen, insbesondere dass nur 1 AND 1 zu 1 wird.
@@ -46,15 +50,33 @@ Für XOR, NAND, NOR jeweils prüfen, dass gezielt NotImplementedException geworf
 10. Variablenextraktion und Matrixgröße
 Für einen Term mit n unterschiedlichen Variablen prüfen, dass exakt 2^n Zeilen erzeugt werden und jede Variablenbelegung genau einmal vorkommt.
 
-## 3. Maria möchte die Codequalität im Projekt verbessern.
+# Part 3 -- Codequalität in der CI absichern
 
-Die Studenten sollen einen statischen Code-Analyzer in das Projekt einbinden und die Codequalität verbessern. Siehe Section 2 in der `README.md` für weitere Details.
+<!-- agent-assignment-part:{"kind":"ci","required_checks":["workflow:.github/workflows/ci.yml"]} -->
 
-## 4. Jürgen möchte eine Dokumentation immer verfügbar haben
+Maria möchte die Codequalität im Projekt verbessern.
 
-Die Studenten sollen eine Dokumentation mit Doxygen erstellen und diese als Artefakt in der CI Pipeline generieren. Siehe Section 3 in der `README.md` für weitere Details.
+- Binde einen statischen Code-Analyzer oder eine Formatprüfung in das Projekt ein.
+- Erweitere `.github/workflows/ci.yml`, sodass diese Prüfung automatisch in der CI ausgeführt wird.
+- Behebe die dadurch sichtbar werdenden Qualitätsprobleme, ohne die vorhandene Funktionalität zu verschlechtern.
+- Hinweise stehen in Abschnitt 2 der `README.md`.
 
-## 5. Bonusaufgabe: Maria möchte, ein Issue und ein PR-Template für das Projekt haben
+# Part 4 -- Dokumentation als CI-Artefakt erzeugen
+
+<!-- agent-assignment-part:{"kind":"ci","required_checks":["workflow:.github/workflows/ci.yml"]} -->
+
+Jürgen möchte eine Dokumentation immer verfügbar haben.
+
+- Erzeuge die Dokumentation mit Doxygen.
+- Erweitere `.github/workflows/ci.yml`, sodass die Doxygen-Dokumentation in der CI generiert wird.
+- Lade die generierte RTF-Dokumentation als GitHub-Actions-Artefakt hoch.
+- Hinweise stehen in Abschnitt 3 der `README.md`.
+
+# Part 5 -- Bonusaufgabe: Issue- und PR-Templates
+
+<!-- agent-assignment-part:{"kind":"bonus","required_checks":["workflow:.github/workflows/ci.yml"],"labels":["bonus"]} -->
+
+Diese Bonusaufgabe wird nach den Pflichtteilen automatisch erzeugt. Sie ist freiwillig und dient dazu, den GitHub-Projektworkflow weiter zu verbessern.
 
 Issue-Template erstellen
 ====================
